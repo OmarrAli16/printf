@@ -8,7 +8,7 @@
 /**
  * _printf - a function for printing
  *
- * @format:
+ * @format: strrr
  *
  * Return: the number of char printed
  */
@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			break;
+			pr_chr = pr_chr + write(1, &format[i], 1);
 		}
 		if (format[i] == 'c')
 		{
