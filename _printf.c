@@ -26,29 +26,28 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
-		{
-			i++;
-		}
-		else
+		if (format[i] !='%')
 		{
 			pr_chr = pr_chr + write(1, &format[i], 1);
 		}
-		if (format[i] == 'c')
+		else
 		{
-			c = va_arg(arg_list, int);
-			pr_chr = pr_chr + write(1, &c, 1);
-		}
-		else if (format[i] == 's')
-		{
-
-			s = va_arg(arg_list, char *);
-			if (s != NULL)
+			i++;
+			if (format[i] == 'c')
 			{
-				while (*s)
+				c = va_arg(arg_list, int);
+				pr_chr = pr_chr + write(1, &c, 1);
+			}
+			else if (format[i] == 's')
+			{
+				s = va_arg(arg_list, char *);
+				if (s != NULL)
 				{
-					pr_chr = pr_chr + write(1, s, 1);
-					s++;
+					while (*s)
+					{
+						pr_chr = pr_chr + write(1, s, 1);
+						s++;
+					}
 				}
 			}
 		}
