@@ -10,20 +10,20 @@
  * @arg: argument
  * Return: The number of characters printed.
  */
-int spec_print(char in, va_list arg_list)
+int spec_print(char *in, va_list arg_list)
 {
     int res;
 
     res = 0;
-    switch (specifier) {
+    switch (*in) {
         case 'c':
             res = _putchar(va_arg(arg_list, int));
             break;
         case 's':
-            res = str_print(va_arg(arg_list, char *));
+            res = string_print(va_arg(arg_list, char *));
             break;
         default:
-            res = res + write(1, @in, 1);
+            res = res + write(1, in, 1);
     }
 
     return (res);
